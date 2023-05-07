@@ -80,19 +80,32 @@
     - model [ok]
     - seeder [ok]
     - Controller
-        - index (compaginação)
-        - show
-        - form (create/edit)
+        - CRUD [ok]
     - Routes
-        - CRUD Books
+        - CRUD Books [ok]
             - index [ok]
-            - show
-            - form (create/edit)
+            - show [ok]
+            - form (create/edit) [ok]
             - destroy [ok]
-            - store
-            - update
-            - validations (store, update)
+            - store [ok]
+            - update [ok]
+            - validations (store, update) [ok]
                 - title -> `required|string|min:3|max:100`
                 - description -> `required|string|min:3|max:1000`
                 - author_id -> `required|exists:\App\Models\Author,id`
                 - page_count -> `required|integer|min:1`
+    - [TODO]
+        - Add Bootstrap CSS dependency [TODO]
+        - Show confirm message on delete item [TODO]
+        - Show message validation error on input [TODO]
+        - Automated tests [TODO]
+            - For auth [TODO]
+                - Login [TODO]
+                - Register [TODO]
+            - For books CRUD [TODO]
+                - List [TODO]
+                - Edit [TODO]
+                - Update [TODO]
+                - Delete [TODO]
+                - Show [TODO]
+        - Dynamic pagination (via form/links) [TODO]
