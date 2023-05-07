@@ -61,3 +61,21 @@
 > *Importante:*
 >
 > caso não consiga finalizar completamente o desafio dentro do prazo estipulado, não deixe de enviar seu código para nossa avaliação. Envie e comunique o que você desenvolveu e o que ficou faltando.
+
+----
+
+## Activity Control
+
+* Auth
+    - laravel/ui (blade)
+    - seeder
+* Sempre exigir auth
+    - exceto para
+        - login
+        - register
+        - recovery pass
+* CRUD de livros
+    - migration
+    - factory
+    - model
+    - seeder
