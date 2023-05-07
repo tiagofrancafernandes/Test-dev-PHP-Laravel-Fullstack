@@ -75,7 +75,23 @@
         - register
         - recovery pass
 * CRUD de livros
-    - migration
-    - factory
-    - model
-    - seeder
+    - migration [ok]
+    - factory [ok]
+    - model [ok]
+    - seeder [ok]
+    - Controller
+        - index (compaginação)
+        - show
+        - form (create/edit)
+    - Routes
+        - CRUD Books
+            - index
+            - show
+            - form (create/edit)
+            - store
+            - update
+            - validations (store, update)
+                - title -> `required|string|min:3|max:100`
+                - description -> `required|string|min:3|max:1000`
+                - author_id -> `required|exists:\App\Models\Author,id`
+                - page_count -> `required|integer|min:1`

@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Book;
+use App\Models\Author;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,22 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        $users = [
-            [
-                'name' => 'Admin',
-                'email' => 'admin@mail.com',
-                'password' => 'power@123',
-            ],
-        ];
-
-        foreach ($users as $user) {
-            \dump("User e-mail: {$user['email']}");
-            \dump("User password: {$user['password']}");
-            $user['password'] = \Hash::make($user['password']);
-
-            \App\Models\User::updateOrCreate([
-                'email' => $user['email'],
-            ], $user);
-        }
+        $this->call(InitialUserSeeder::class);
+        $this->call(BookSeeder::class);
     }
 }
