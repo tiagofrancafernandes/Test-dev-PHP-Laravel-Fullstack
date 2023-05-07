@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +20,9 @@ Route::get('/', function () {
 })->middleware([
     'auth'
 ]);
+
+Route::resource('authors', AuthorController::class);
+Route::resource('books', BookController::class);
 
 Auth::routes();
 

@@ -85,9 +85,10 @@
         - form (create/edit)
     - Routes
         - CRUD Books
-            - index
+            - index [ok]
             - show
             - form (create/edit)
+            - destroy [ok]
             - store
             - update
             - validations (store, update)
