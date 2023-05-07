@@ -14,9 +14,22 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $users = [
+            [
+                'name' => 'Admin',
+                'email' => 'admin@mail.com',
+                'password' => 'power@123',
+            ],
+        ];
+
+        foreach ($users as $user) {
+            \dump("User e-mail: {$user['email']}");
+            \dump("User password: {$user['password']}");
+            $user['password'] = \Hash::make($user['password']);
+
+            \App\Models\User::updateOrCreate([
+                'email' => $user['email'],
+            ], $user);
+        }
     }
 }

@@ -67,8 +67,8 @@
 ## Activity Control
 
 * Auth
-    - laravel/ui (blade)
-    - seeder
+    - laravel/ui (blade) [ok]
+    - seeder [ok]
 * Sempre exigir auth
     - exceto para
         - login
