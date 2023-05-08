@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
@@ -38,15 +39,26 @@ class AuthorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
-        //
+        $author = Author::withCount('books')->whereId($id)->first();
+
+        if (!$author) {
+            return \redirect()->route('books.index')
+            ->with('error', __(':item not found.', [
+                'item' => __('Author'),
+            ]));
+        }
+
+        return view('authors.show', [
+            'author' => $author,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request, string $id)
     {
         //
     }
@@ -62,8 +74,38 @@ class AuthorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        $author = Author::withCount('books')->whereId($id)->first();
+
+        if (!$author) {
+            return \redirect()->route('books.index')
+            ->with('error', __(':item not found.', [
+                'item' => __('Author'),
+            ]));
+        }
+
+        $deleted = $author->delete();
+
+        if ($deleted) {
+            return \redirect()->route('books.index')
+            ->with('success', __(':item deleted succesfuly.', [
+                'item' => \sprintf(
+                    '%s "(#%d) %s"',
+                    __('Author'),
+                    $author->id,
+                    $author->name,
+                ),
+            ]));
+        }
+
+        return \redirect()->route('books.index')
+        ->with('error', __('Fail to delete :item.', [
+            'item' => \sprintf(
+                '%s "(#%d)"',
+                __('Author'),
+                $author->id,
+            ),
+        ]));
     }
 }

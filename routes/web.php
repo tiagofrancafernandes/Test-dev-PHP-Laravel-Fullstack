@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BookController;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware([
-    'auth'
-]);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('books.index');
+    })->middleware([
+        'auth'
+    ]);
 
-Route::resource('authors', AuthorController::class);
-Route::resource('books', BookController::class);
+    Route::resource('authors', AuthorController::class);
+    Route::resource('books', BookController::class);
+});
+
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

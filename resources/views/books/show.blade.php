@@ -1,100 +1,104 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h5>
-                        {{ __('Book') }}:
-                        {{ $book->title }}
-                        (ID: {{ $book->id }})
-                    </h5>
+<x-content-container>
+    <x-slot:topTitle>
+        {{ __('Book') }}:
+        {{ $book->title }}
+        (ID: {{ $book->id }})
+    </x-slot:topTitle>
 
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="{{ route('books.create') }}" class="btn btn-md btn-outline-primary">
-                                @lang('Create')
-                            </a>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td colspan="100%">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12 d-flex d-sm-flex justify-content-center justify-content-md-end justify-content-evenly justify-content-md-between">
+                                    <a href="{{ route('books.edit', $book->id ) }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="bi bi-pencil-square"></i>
 
-                            <a href="{{ route('books.index') }}" class="btn btn-md btn-outline-primary">
-                                @lang('Books')
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                                        @lang('Edit')
+                                    </a>
 
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <td colspan="100%">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <h4>@lang('Actions')</h4>
-                                                    <div class="w-100">
-                                                        <button
-                                                            href=""
-                                                            onclick="event.preventDefault();
-                                                                document.getElementById('books_destroy_{{ $book->id }}').submit();"
-                                                            class="btn btn-sm btn-outline-danger">
-                                                            @lang('Delete')
-                                                        </button>
+                                    <x-bs-confirm-modal
+                                        :key="$book->id"
 
-                                                        <form
-                                                            id="books_destroy_{{ $book->id }}"
-                                                            action="{{ route('books.destroy', $book->id ) }}"
-                                                            method="POST"
-                                                            class="d-none"
-                                                        >
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
+                                        class="btn btn-sm btn-outline-danger"
+                                    >
+                                        <x-slot:trigger>
+                                            <i class="bi bi-trash"></i>
 
-                                                        <a href="{{ route('books.edit', $book->id ) }}" class="btn btn-sm btn-outline-primary">
-                                                            @lang('Edit')
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>@lang('ID')</th>
-                                        <td>{{ $book->id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>@lang('Title')</th>
-                                        <td>{{ $book->title }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>@lang('Author')</th>
-                                        <td> <a href="{{ route('authors.show', $book->author_id ) }}"> {{ $book->author?->name }} </a> </td>
-                                    </tr>
-                                    <tr>
-                                        <th>@lang('Pages')</th>
-                                        <td>{{ $book->page_count }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>@lang('Description')</th>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th></th>
-                                        <td>{{ $book->description }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                            @lang('Delete')
+                                        </x-slot:trigger>
+
+                                        <x-slot:message>
+                                            <p>
+                                                @lang('Are you sure you want to delete this :item?', ['item' => __('book')])
+                                            </p>
+                                            <p>
+                                                @lang('Book'):
+                                                <a
+                                                    href="{{ route('books.show', $book->id ) }}"
+                                                    class="text-info px-3 px-md-1"
+                                                >
+                                                    {{ $book->title }} (#{{ $book->id }})
+                                                </a>
+                                            </p>
+
+                                            <form
+                                                id="books_destroy_{{ $book->id }}"
+                                                action="{{ route('books.destroy', $book->id ) }}"
+                                                method="POST"
+                                                class="d-none"
+                                            >
+                                                @csrf
+                                                @method('delete')
+                                            </form>
+                                        </x-slot:message>
+
+                                        <x-slot:yes
+                                            onclick="event.preventDefault();
+                                                document.getElementById('books_destroy_{{ $book->id }}').submit();"
+                                            class="btn-danger"
+                                        >
+                                            @lang('Yes, delete!')
+                                        </x-slot:yes>
+                                    </x-bs-confirm-modal>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>@lang('ID')</th>
+                        <td>{{ $book->id }}</td>
+                    </tr>
+                    <tr>
+                        <th>@lang('Title')</th>
+                        <td>{{ $book->title }}</td>
+                    </tr>
+                    <tr>
+                        <th>@lang('Author')</th>
+                        <td> <a href="{{ route('authors.show', $book->author_id ) }}"> {{ $book->author?->name }} </a> </td>
+                    </tr>
+                    <tr>
+                        <th>@lang('Pages')</th>
+                        <td>{{ $book->page_count }}</td>
+                    </tr>
+                    <tr>
+                        <th>@lang('Description')</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>{{ $book->description }}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-</div>
+</x-content-container>
 @endsection

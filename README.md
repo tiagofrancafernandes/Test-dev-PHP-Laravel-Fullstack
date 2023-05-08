@@ -95,9 +95,9 @@
                 - author_id -> `required|exists:\App\Models\Author,id`
                 - page_count -> `required|integer|min:1`
     - [TODO]
-        - Add Bootstrap CSS dependency [TODO]
-        - Show confirm message on delete item [TODO]
-        - Show message validation error on input [TODO]
+        - Add Bootstrap CSS dependency [ok]
+        - Show confirm message on delete item [ok]
+        - Show message validation error on input [ok]
         - Automated tests [TODO]
             - For auth [TODO]
                 - Login [TODO]

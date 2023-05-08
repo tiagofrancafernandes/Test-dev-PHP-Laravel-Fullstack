@@ -1,0 +1,23 @@
+.show-label-on-hover .hover-label {
+    transition: all 0.5s linear;
+    display: none;
+}
+
+
+.show-label-on-hover:hover .hover-label {
+    transition: all 0.5s linear;
+    display: inline;
+}
+
+// Usage:
+/*
+<div class="btn-group d-flex" style="min-width: 22vw;overflow: hidden;white-space: nowrap;">
+    <a
+        href="{{ route('books.edit', $book->id ) }}"
+        class="btn btn-sm btn-outline-primary px-1 px-md-3 show-label-on-hover"
+    >
+        <i class="bi bi-pencil-square"></i>
+        <span class="hover-label mx-1">@lang('Edit')</span>
+    </a>
+</div>
+*/

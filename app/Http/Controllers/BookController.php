@@ -152,14 +152,26 @@ class BookController extends Controller
      */
     public function destroy(Request $request, Book $book)
     {
-        $book->delete();
+        $deleted = $book->delete();
 
-        return back()->with('success', __(':item deleted succesfuly.', [
+        if ($deleted) {
+            return \redirect()->route('books.index')
+            ->with('success', __(':item deleted succesfuly.', [
+                'item' => \sprintf(
+                    '%s "(#%d) %s"',
+                    __('Book'),
+                    $book->id,
+                    $book->title,
+                ),
+            ]));
+        }
+
+        return \redirect()->route('books.index')
+        ->with('error', __('Fail to delete :item.', [
             'item' => \sprintf(
-                '%s "(#%d) %s"',
+                '%s "(#%d)"',
                 __('Book'),
                 $book->id,
-                $book->title,
             ),
         ]));
     }

@@ -1,4 +1,12 @@
-
+@if ($errors->any())
+    <div class="alert alert-danger px-4 mx-5 pb-1 mb-2">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @if (session('status'))
 <x-bs-alert color="success" class="mb-2">
