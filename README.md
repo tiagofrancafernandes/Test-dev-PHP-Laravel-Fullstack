@@ -1,3 +1,64 @@
+### Executando o projeto
+
+- Clone o projeto:
+```sh
+git clone git@github.com:tiagofrancafernandes/Test-dev-PHP-Laravel-Fullstack.git
+
+cd ./Test-dev-PHP-Laravel-Fullstack
+```
+
+- Instale as dependências do composer
+```sh
+composer install
+```
+
+- Faça a copia do `.env.example` para `.env`
+
+- Gere a chave da aplicação
+
+```sh
+php artisan key:generate
+```
+
+- Ajuste os campos `DB_*`
+
+```sh
+# Como tem docker no projeto, pode deixar assim:
+DB_CONNECTION=pgsql
+DB_HOST=pgsql
+DB_PORT=5432
+DB_DATABASE=laravel
+DB_USERNAME=sail
+DB_PASSWORD=password
+```
+
+- Execute as migrations
+
+```sh
+php artisan migrate --step --seed
+```
+
+Com isso foi criado o usuário abaixo:
+```sh
+admin@mail.com # Email
+power@123 # Senha
+```
+
+- Instale as dependencias do JS e execute...
+```sh
+Faça o build/watch
+npm run dev #watch
+npm run build #build
+```
+
+- Agora é só servir a aplicação:
+```sh
+php artisan serve
+```
+
+*Done!*
+----
+
 # DESAFIO VAGA FULLSTACK PHP
 
 
