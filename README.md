@@ -156,6 +156,7 @@ php artisan serve
                 - author_id -> `required|exists:\App\Models\Author,id`
                 - page_count -> `required|integer|min:1`
     - [TODO]
+        - Clima da região [TODO] <=== WIP
         - Add Bootstrap CSS dependency [ok]
         - Show confirm message on delete item [ok]
         - Show message validation error on input [ok]
