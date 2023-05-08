@@ -8,6 +8,25 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+/**
+ * App\Models\Author
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read Collection<int, \App\Models\Book> $books
+ * @property-read int|null $books_count
+ * @method static \Database\Factories\AuthorFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Author newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Author newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Author query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Author whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Author whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Author whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Author whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Author extends Model
 {
     use HasFactory;
