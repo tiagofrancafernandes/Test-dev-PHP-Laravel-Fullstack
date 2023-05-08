@@ -48,7 +48,7 @@ class Author extends Model
             )
         );
 
-        $select = $select ?? ['id', 'name'];
+        $select ??= ['id', 'name'];
 
         $cacheKey = "authors_list_select-" . \implode('-', \array_values($select));
 

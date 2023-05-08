@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Author;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use App\Http\Requests\BookFormRequest;
 
 class BookController extends Controller
